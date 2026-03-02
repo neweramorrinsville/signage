@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="1800">
     <title>Digital Signage Player</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: black; }
-        video { width: 100vw; height: 100vh; object-fit: contain; } /* 'cover' fills the screen, 'contain' shows the whole video */
+        video { width: 100vw; height: 100vh; object-fit: contain; }
     </style>
     <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
-    <video autoplay muted loop playsinline preload="auto">
-        <source src="Slides.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline preload="auto" id="signageVideo">
+        <source id="videoSource" src="Slides.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-</body>
 
+    <script>
+        // This adds a timestamp to the URL (e.g., Slides.mp4?v=12345) 
+        // to force the player to download the latest version from GitHub.
+        var video = document.getElementById('signageVideo');
+        var source = document.getElementById('videoSource');
+        source.src = "Slides.mp4?t=" + new Date().getTime();
+        video.load();
+    </script>
+</body>
 </html>
+
 
